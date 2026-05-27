@@ -11,7 +11,6 @@ import java.time.LocalDateTime;
 public class Student {
 
     @Id
-    @GeneratedValue
     private Long id;
     private String firstName;
     private String lastName;
