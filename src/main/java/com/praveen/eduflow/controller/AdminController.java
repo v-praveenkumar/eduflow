@@ -17,10 +17,17 @@ public class AdminController {
     AdminService adminService;
 
     @PostMapping("/deletestudent/{id}")
-    public ResponseEntity<String> deleteUser(@PathVariable Long id){
+    public ResponseEntity<String> deleteStudent(@PathVariable Long id){
         adminService.deleteStudentAccount(id);
         return new ResponseEntity<>("deleted", HttpStatus.OK);
     }
+
+    @PostMapping("/deleteinstructor/{id}")
+    public ResponseEntity<String> deleteInstructor(@PathVariable Long id){
+        adminService.deleteInstructorAccount(id);
+        return new ResponseEntity<>("deleted", HttpStatus.OK);
+    }
+
 
 
 }
