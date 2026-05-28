@@ -1,9 +1,13 @@
 package com.praveen.eduflow.service;
 
+import com.praveen.eduflow.ENUM.StudentStatus;
+import com.praveen.eduflow.model.Student;
 import com.praveen.eduflow.repository.InstructorRepository;
 import com.praveen.eduflow.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.List;
 
 @Service
 public class AdminService {
@@ -33,5 +37,15 @@ public class AdminService {
             InstructorRepo.deleteById(id);
         }
         return "Student Account deleted";
+    }
+
+    public void suspendStudent() {
+        List<Student> students = studentRepo.findAll();
+        for(Student student : students) {
+            if(student.getStatus() == StudentStatus.ACTIVE) {
+                student.setStatus(StudentStatus.SUSPENDED);
+                studentRepo.save(student);
+            }
+        }
     }
 }
